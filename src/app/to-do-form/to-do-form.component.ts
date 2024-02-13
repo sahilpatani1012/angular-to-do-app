@@ -19,13 +19,15 @@ export class ToDoFormComponent {
   newTask:ToDoItem = {
     id: Math.random(),
     title: "",
-    completed:false
+    completed:false,
+    deadline: new Date()
   }
   listService = inject(ListItemsService);
 
   addItemHandler(taskTitle:string,taskDeadline:Date){
     if(taskTitle.length === 0) return;
     this.newTask.title = taskTitle;
+    this.newTask.deadline = taskDeadline;
     this.listService.addListItem(this.newTask);
     this.router.navigate(['/']);
     taskTitle = ""

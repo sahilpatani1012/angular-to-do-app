@@ -30,11 +30,12 @@ export class ListItemsService {
   }
 
   toDoItems: ToDoItem[] = [
-    { id: 1, title: 'Buy groceries', completed: true },
-    { id: 2, title: 'Finish project report', completed: false },
-    { id: 3, title: 'Call the bank', completed: false },
-    { id: 4, title: 'Clean the house', completed: false },
-    { id: 5, title: 'Prepare for the meeting', completed: false }
-  ];
+    { id: 1, title: 'Buy groceries', completed: true, deadline: new Date('2024-03-17T03:24:00') },
+    { id: 2, title: 'Finish project report', completed: false, deadline: new Date('2024-11-20T14:48:00') },
+    { id: 3, title: 'Call the bank', completed: false, deadline: new Date('2024-07-09T09:36:00') },
+    { id: 4, title: 'Clean the house', completed: false, deadline: new Date('2024-05-22T16:12:00') },
+    { id: 5, title: 'Prepare for the meeting', completed: false, deadline: new Date('2024-08-30T21:18:00') }
+];
+
 
 }
