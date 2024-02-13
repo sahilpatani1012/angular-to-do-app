@@ -1,0 +1,18 @@
+<div>
+    <div>
+        <div *ngFor="let toDoItem of toDoItems">
+            <div class="card to-do-list">
+                <div class="card-content">
+                    <div class="media is-flex">
+                        <div class="media-content">
+                            <p class="title is-4"> {{toDoItem.title}} </p>
+                        </div>
+                        <div>
+                            <p-checkbox (onChange)="taskCompletedHandler(toDoItem.id)"  [(ngModel)]="toDoItem.completed" [binary]="true" inputId="binary"></p-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
