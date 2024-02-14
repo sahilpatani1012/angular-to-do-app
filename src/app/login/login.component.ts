@@ -26,7 +26,7 @@ constructor(private loginService:LoginServiceService, private router:Router){ }
         next: (response) => {
           console.log("Login Successful: ",response);
           this.credentialsError = false;
-          this.router.navigate(["/todos"]);
+          this.router.navigate([this.username,"todos"]);
         },
         error: (error) => {
           console.log("Login error: ",error); 

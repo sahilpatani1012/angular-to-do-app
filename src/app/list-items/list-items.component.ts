@@ -5,6 +5,7 @@ import { ToDoItem } from '../to-do-item';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { ListItemsService } from '../list-items.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-items',
@@ -15,14 +16,24 @@ import { ListItemsService } from '../list-items.service';
 })
 export class ListItemsComponent {
 
+  constructor(private router:ActivatedRoute){}
+
   private service = inject(ListItemsService);
-  toDoItems:ToDoItem[] = this.service.getListItems();
+  toDoItems:ToDoItem[] = []
   items : any = []
   ngOnInit(){
-    
-    this.items = (localStorage.getItem("toDoItems"));
-    this.toDoItems = JSON.parse(this.items);
-    
+    const userEmail:any = this.router.snapshot.paramMap.get('userEmail');
+    this.service.getListItems(userEmail)
+      .subscribe({
+        next:(response:ToDoItem[]) => {
+          this.toDoItems = response
+        },
+        error:(error) => {
+          console.log(error);
+        }
+      })
+    // this.items = (localStorage.getItem("toDoItems"));
+    // this.toDoItems = JSON.parse(this.items);
   }
 
   taskCompletedHandler(id:number){

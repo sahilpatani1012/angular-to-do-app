@@ -1,26 +1,33 @@
 import { Injectable } from '@angular/core';
 import { ToDoItem } from './to-do-item';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ListItemsService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
-  getListItems(): ToDoItem[] {
-    let items: ToDoItem[] = [];
-    const storedItems = localStorage.getItem("toDoItems");
-    if (storedItems) {
-      items = JSON.parse(storedItems);
-    }
-    return items;
+  getListItems(userEmail:string): Observable<ToDoItem[]> {
+    const url = `http://localhost:3000/api/${userEmail}`
+
+    return this.http.get<ToDoItem[]>(url);
+    // let items: ToDoItem[] = [];
+    // const storedItems = localStorage.getItem("toDoItems");
+    // if (storedItems) {
+    //   items = JSON.parse(storedItems);
+    // }
+    // return items;
   }
 
-  addListItem(item: ToDoItem) {
-    let items: ToDoItem[] = this.getListItems();
-    items.push(item);
-    localStorage.setItem("toDoItems", JSON.stringify(items));
+  addListItem(item: ToDoItem, userEmail: string) {
+    const url = `http://localhost:3000/api/${userEmail}/add-todos`
+
+    return this.http.patch(url,item);
+    // let items: ToDoItem[] = this.getListItems();
+    // items.push(item);
+    // localStorage.setItem("toDoItems", JSON.stringify(items));
   }
 
   changeList(newList: ToDoItem[]) {

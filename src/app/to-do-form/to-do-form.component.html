@@ -4,13 +4,13 @@
         <div class="field">
             <label class="label">What do you wanna get done?</label>
             <div class="control">
-                <input name="taskTitle" class="input" [(ngModel)]="taskTitle" type="text" placeholder="Enter your task">
+                <input required name="taskTitle" class="input" [(ngModel)]="taskTitle" type="text" placeholder="Enter your task">
             </div>
         </div>
         <div class="field">
             <label class="label">Till when?</label>
             <div class="control">
-                <input name="taskDeadline" [(ngModel)]="taskDeadline" class="input" type="date">
+                <input required name="taskDeadline" [(ngModel)]="taskDeadline" class="input" type="date">
             </div>
         </div>
     </form>

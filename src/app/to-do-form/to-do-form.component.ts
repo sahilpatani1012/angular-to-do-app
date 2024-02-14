@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToDoItem } from '../to-do-item';
 import { ListItemsService } from '../list-items.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-to-do-form',
@@ -13,7 +14,9 @@ import { ListItemsService } from '../list-items.service';
   styleUrl: './to-do-form.component.css'
 })
 export class ToDoFormComponent {
-  router = new Router();
+
+  constructor(private router: Router, private listService: ListItemsService, private activeRouter:ActivatedRoute) {}
+
   taskTitle:string = ""
   taskDeadline:Date = new Date()
   newTask:ToDoItem = {
@@ -22,14 +25,22 @@ export class ToDoFormComponent {
     completed:false,
     deadline: new Date()
   }
-  listService = inject(ListItemsService);
 
   addItemHandler(taskTitle:string,taskDeadline:Date){
     if(taskTitle.length === 0) return;
     this.newTask.title = taskTitle;
     this.newTask.deadline = taskDeadline;
-    this.listService.addListItem(this.newTask);
-    this.router.navigate(['/todos']);
+    const userEmail:any = this.activeRouter.snapshot.paramMap.get('userEmail')
+    this.listService.addListItem(this.newTask,userEmail)
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
+    this.router.navigate([userEmail,'todos']);
     taskTitle = ""
     taskDeadline = new Date()
   }

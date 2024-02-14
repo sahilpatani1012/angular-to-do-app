@@ -11,11 +11,11 @@ export const routes: Routes = [
         component:LoginComponent
     },
     {
-        path: "add-todo",
+        path: ":userEmail/add-todo",
         component: ToDoFormComponent
     },
     {
-        path: "todos",
+        path: ":userEmail/todos",
         component: ContainerComponent
     },
     {
