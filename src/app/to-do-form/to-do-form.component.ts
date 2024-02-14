@@ -29,7 +29,7 @@ export class ToDoFormComponent {
     this.newTask.title = taskTitle;
     this.newTask.deadline = taskDeadline;
     this.listService.addListItem(this.newTask);
-    this.router.navigate(['/']);
+    this.router.navigate(['/todos']);
     taskTitle = ""
     taskDeadline = new Date()
   }

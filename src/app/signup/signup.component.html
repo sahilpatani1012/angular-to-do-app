@@ -1,0 +1,45 @@
+<div class="container">
+    <div [style]="formSubmitted ? {'height':'325px'} : {}" class="card login-card">
+      <div class="card-content">
+        <div class="title login-card-title">
+          Sign Up
+        </div>
+        <div class="login-form">
+          <form>
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input class="input" name="username" [(ngModel)]="username" type="email" placeholder="Email">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" name="password" [(ngModel)]="password" type="password" placeholder="Password">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="success-message" *ngIf="signupSuccess">
+                {{successMessage}}
+            </div>
+            <div class="error-message" *ngIf="signupError">
+                {{errorMessage}}
+            </div>
+            <div class="login-button-parent">
+              <button (click)="signupHandler()" class="button is-link is-medium login-button">Sign Up</button>
+            </div>
+            <div class="signup-link">
+              <a routerLink="/">Already have an account? Log In!</a>
+            </div>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>
