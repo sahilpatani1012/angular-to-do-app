@@ -9,7 +9,7 @@
                             <p class="subtitle">Due on {{toDoItem.deadline | date:'dd-MM-yyyy'}} </p>
                         </div>
                         <div>
-                            <p-checkbox (onChange)="taskCompletedHandler(toDoItem.id)"  [(ngModel)]="toDoItem.completed" [binary]="true" inputId="binary"></p-checkbox>
+                            <p-checkbox (onChange)="taskCompletedHandler(toDoItem.id,userEmail)"  [(ngModel)]="toDoItem.completed" [binary]="true" [inputId]="toDoItem.id.toString()"></p-checkbox>
                         </div>
                     </div>
                 </div>

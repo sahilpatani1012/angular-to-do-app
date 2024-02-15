@@ -19,10 +19,12 @@ export class ListItemsService {
     return this.http.patch(url,item);
   }
 
-  changeList(newList: ToDoItem[]) {
-    localStorage.setItem("toDoItems", JSON.stringify(newList));
-    let newListString: any = localStorage.getItem("toDoItems")
-    return JSON.parse(newListString)
+  changeList(id:string,userEmail:string) {
+    const url = `http://localhost:3000/api/update-list/${userEmail}/${id}`
+    return this.http.get(url);
+    // localStorage.setItem("toDoItems", JSON.stringify(newList));
+    // let newListString: any = localStorage.getItem("toDoItems")
+    // return JSON.parse(newListString)
   }
 
 }

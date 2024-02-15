@@ -16,17 +16,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListItemsComponent {
 
-  constructor(private router: ActivatedRoute) { }
+  constructor(private router: ActivatedRoute, private service:ListItemsService) { }
 
-  private service = inject(ListItemsService);
   toDoItems: ToDoItem[] = []
   items: any = []
+  userEmail: any = this.router.snapshot.paramMap.get('userEmail');
   ngOnInit() {
-    const userEmail: any = this.router.snapshot.paramMap.get('userEmail');
-    this.service.getListItems(userEmail)
+    this.service.getListItems(this.userEmail)
       .subscribe({
         next: (response: ToDoItem[]) => {
-          this.toDoItems = response          
+          this.toDoItems = response.filter((item) => item.completed === false)          
         },
         error: (error) => {
           console.log(error);
@@ -34,9 +33,9 @@ export class ListItemsComponent {
       })
   }
 
-  taskCompletedHandler(id: number) {
-    this.toDoItems = this.toDoItems.filter((item) => item.id !== id)
-    this.toDoItems = this.service.changeList(this.toDoItems);
+  taskCompletedHandler(id: number,userEmail:string) {
+    this.service.changeList(id.toString(),userEmail)
+    this.ngOnInit()
   }
 
 }
