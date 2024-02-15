@@ -6,7 +6,7 @@
                     <div class="media is-flex">
                         <div class="media-content">
                             <p class="title is-4"> {{toDoItem.title}} </p>
-                            <p class="subtitle">Due on {{toDoItem.deadline}} </p>
+                            <p class="subtitle">Due on {{toDoItem.deadline | date:'dd-MM-yyyy'}} </p>
                         </div>
                         <div>
                             <p-checkbox (onChange)="taskCompletedHandler(toDoItem.id)"  [(ngModel)]="toDoItem.completed" [binary]="true" inputId="binary"></p-checkbox>
