@@ -40,7 +40,7 @@ export class ToDoFormComponent {
           console.log(error);
         }
       })
-    this.router.navigate([userEmail,'todos']);
+    this.router.navigate([`${userEmail}/todos`]);
     taskTitle = ""
     taskDeadline = new Date()
   }
